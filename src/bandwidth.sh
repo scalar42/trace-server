@@ -13,7 +13,6 @@ tick=`head -n 1 ./trace/$trace | cut -d' ' -f1`
 prev_bw=`head -n 1 ./trace/$trace | cut -d' ' -f2`
 echo "[INIT] tick:$tick bw:$prev_bw">>./log/bw_log_${trace}
 
-tc qdisc del dev eth0 root
 tc qdisc add dev eth0 root tbf rate ${prev_bw}mbit burst 32kbit latency ${lat}ms
 echo "$tick 0 $prev_bw">>./log/bw_log_${trace}
 
@@ -23,7 +22,9 @@ while read -r sec bw; do
 		((tick+=1))
 		echo "$tick $sec $prev_bw">>./log/bw_log_${trace}
 	done
-	echo "[BW] CHANGE TO $bw">>./log/bw_log_${trace}
+	# echo "[BW] CHANGE TO $bw">>./log/bw_log_${trace}
 	tc qdisc replace dev eth0 root tbf rate ${bw}mbit burst 32kbit latency ${lat}ms
 	prev_bw=$bw
 done < ./trace/${trace}
+
+tc qdisc del dev eth0 root
