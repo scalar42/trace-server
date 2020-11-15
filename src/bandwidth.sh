@@ -27,3 +27,4 @@ while read -r sec bw; do
 done < ./trace/${trace}
 
 tc qdisc del dev eth0 root
+echo "[END] Trace $trace Ended."
