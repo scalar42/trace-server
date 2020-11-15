@@ -1,4 +1,3 @@
-echo "ARG: $#"
 if [ $# -eq 0 ]
 then
 	echo "No trace file! Example:bus.ljansbakken-oslo.report.2010-11-10_1726CET.log"
