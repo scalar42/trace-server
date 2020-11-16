@@ -6,6 +6,7 @@ fi
 
 trace=$1
 echo "[INIT] trace:$trace ">>./log/bw_log_${trace}
+echo ""[START] trace:$trace ""
 lat=200
 
 tick=`head -n 1 ./trace/$trace | cut -d' ' -f1`
