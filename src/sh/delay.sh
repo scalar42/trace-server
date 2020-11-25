@@ -1,3 +1,5 @@
+#!/bin/bash
+
 delay=180
 tc qdisc add dev eth0 root netem delay ${delay}ms
 while true;do
